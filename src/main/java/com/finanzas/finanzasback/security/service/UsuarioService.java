@@ -24,6 +24,13 @@ public class UsuarioService {
         return usuarioRepository.existsByNombreUsuario(nombreUsuario);
     }
 
+    public boolean existsByDni(String dni){
+        return usuarioRepository.existsByDni(dni);
+    }
+    public boolean existsByRuc(String ruc){
+        return usuarioRepository.existsByRuc(ruc);
+    }
+
     public boolean existsByEmail(String email){
         return usuarioRepository.existsByEmail(email);
     }

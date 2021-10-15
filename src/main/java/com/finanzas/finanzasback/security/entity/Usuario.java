@@ -20,6 +20,16 @@ public class Usuario {
     @NotNull
     private String password;
     @NotNull
+    private String dni;
+    @NotNull
+    private String ruc;
+    @NotNull
+    private String address;
+    @NotNull
+    private String cellphone;
+
+
+    @NotNull
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"),
     inverseJoinColumns = @JoinColumn(name = "rol_id"))
@@ -28,11 +38,18 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(@NotNull String nombre, @NotNull String nombreUsuario, @NotNull String email, @NotNull String password) {
+    public Usuario(@NotNull String nombre, @NotNull String nombreUsuario, @NotNull String email, @NotNull String password,
+                   @NotNull String dni,@NotNull String ruc,@NotNull String address,@NotNull String cellphone
+
+    ) {
         this.nombre = nombre;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
         this.password = password;
+        this.dni= dni;
+        this.ruc=ruc;
+        this.address=address;
+        this.cellphone=cellphone;
     }
 
     public int getId() {
@@ -75,11 +92,46 @@ public class Usuario {
         this.password = password;
     }
 
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+
+
+
     public Set<Rol> getRoles() {
         return roles;
     }
 
     public void setRoles(Set<Rol> roles) {
         this.roles = roles;
+    }
+
+    public String getRuc() {
+        return ruc;
+    }
+
+    public void setRuc(String ruc) {
+        this.ruc = ruc;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCellphone() {
+        return cellphone;
+    }
+
+    public void setCellphone(String cellphone) {
+        this.cellphone = cellphone;
     }
 }

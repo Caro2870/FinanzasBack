@@ -2,6 +2,7 @@ package com.finanzas.finanzasback.security.dto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,6 +15,15 @@ public class NuevoUsuario {
     private String email;
     @NotBlank
     private String password;
+    @NotNull
+    private String dni;
+    @NotNull
+    private String ruc;
+    @NotNull
+    private String address;
+    @NotNull
+    private String cellphone;
+
     private Set<String> roles = new HashSet<>();
 
     public String getNombre() {
@@ -54,5 +64,37 @@ public class NuevoUsuario {
 
     public void setRoles(Set<String> roles) {
         this.roles = roles;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public String getRuc() {
+        return ruc;
+    }
+
+    public void setRuc(String ruc) {
+        this.ruc = ruc;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCellphone() {
+        return cellphone;
+    }
+
+    public void setCellphone(String cellphone) {
+        this.cellphone = cellphone;
     }
 }

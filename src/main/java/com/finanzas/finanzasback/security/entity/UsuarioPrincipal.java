@@ -4,6 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,13 +14,27 @@ public class UsuarioPrincipal implements UserDetails {
     private String nombreUsuario;
     private String email;
     private String password;
+
+    private String dni;
+
+    private String ruc;
+
+    private String address;
+
+    private String cellphone;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UsuarioPrincipal(String nombre, String nombreUsuario, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+    public UsuarioPrincipal(String nombre, String nombreUsuario, String email, String password,
+                            String dni, String ruc, String address, String cellphone,
+                            Collection<? extends GrantedAuthority> authorities) {
         this.nombre = nombre;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
         this.password = password;
+        this.dni=dni;
+        this.ruc=ruc;
+        this.address=address;
+        this.cellphone=cellphone;
         this.authorities = authorities;
     }
 
@@ -27,7 +42,8 @@ public class UsuarioPrincipal implements UserDetails {
         List<GrantedAuthority> authorities =
                 usuario.getRoles().stream().map(rol -> new SimpleGrantedAuthority(rol
                 .getRolNombre().name())).collect(Collectors.toList());
-        return new UsuarioPrincipal(usuario.getNombre(), usuario.getNombreUsuario(), usuario.getEmail(), usuario.getPassword(), authorities);
+        return new UsuarioPrincipal(usuario.getNombre(), usuario.getNombreUsuario(), usuario.getEmail(), usuario.getPassword(), usuario.getDni(), usuario.getRuc(),
+                usuario.getAddress(), usuario.getCellphone(), authorities);
     }
 
     @Override
@@ -71,5 +87,21 @@ public class UsuarioPrincipal implements UserDetails {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public String getRuc() {
+        return ruc;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getCellphone() {
+        return cellphone;
     }
 }

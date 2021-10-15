@@ -1,5 +1,8 @@
 package com.finanzas.finanzasback.domain.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,6 +23,20 @@ public class Cost {
         this.value_type = value_type;
         this.value = value;
     }
+
+
+    @ManyToOne( fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "reason_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Reason reason;
+
+    @ManyToOne( fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "fee_receipt_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private FeeReceipt feeReceipt;
+
+
+
 
     public Long getId() {
         return id;

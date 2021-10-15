@@ -1,5 +1,9 @@
 package com.finanzas.finanzasback.domain.model;
 
+import com.finanzas.finanzasback.security.entity.Usuario;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 
@@ -25,6 +29,11 @@ public class Wallet  {
         this.total_value = total_value;
         this.tir = tir;
     }
+
+    @ManyToOne( fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Usuario usuario;
 
     public Long getId() {
         return id;

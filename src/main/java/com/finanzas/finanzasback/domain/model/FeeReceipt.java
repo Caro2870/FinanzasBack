@@ -1,5 +1,9 @@
 package com.finanzas.finanzasback.domain.model;
 
+import com.finanzas.finanzasback.security.entity.Usuario;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -44,6 +48,16 @@ public class FeeReceipt {
         this.delivered_value = delivered_value;
         this.tcea = tcea;
     }
+
+    @OneToOne( fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "rate_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Rate rate;
+
+    @ManyToOne( fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "wallet_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Wallet wallet;
 
     public Long getId() {
         return id;

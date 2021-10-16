@@ -167,4 +167,22 @@ public class FeeReceipt {
         this.dias = dias;
         return this;
     }
+
+    public Rate getRate() {
+        return rate;
+    }
+
+    public FeeReceipt setRate(Rate rate) {
+        this.rate = rate;
+        return this;
+    }
+
+    public Wallet getWallet() {
+        return wallet;
+    }
+
+    public FeeReceipt setWallet(Wallet wallet) {
+        this.wallet = wallet;
+        return this;
+    }
 }

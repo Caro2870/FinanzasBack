@@ -1,39 +1,16 @@
-package com.finanzas.finanzasback.domain.model;
+package com.finanzas.finanzasback.resource;
 
-import com.finanzas.finanzasback.security.entity.Usuario;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
-import javax.persistence.*;
+public class WalletResource {
 
-
-@Entity
-@Table(name = "wallets")
-public class Wallet  {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String description;
     private Boolean currency_type;
     private float total_value;
     private float tir;
-
-    public Wallet(){}
-    public Wallet(Long id, String name, String description, Boolean currency_type, float total_value, float tir) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.currency_type = currency_type;
-        this.total_value = total_value;
-        this.tir = tir;
-    }
-
-    @ManyToOne( fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Usuario usuario;
 
     public Long getId() {
         return id;
@@ -81,13 +58,5 @@ public class Wallet  {
 
     public void setTir(float tir) {
         this.tir = tir;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
     }
 }

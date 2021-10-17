@@ -35,7 +35,7 @@ public class FeeReceiptServiceImpl implements FeeReceiptService {
                 return feeRepository.save(
                         feeReceipt.setPayment_date(feeReceipt.getPayment_date())
                                 .setIssue_date(feeReceipt.getIssue_date())
-                                .setDias(algoritmos.hallar_n(feeReceipt.getPayment_date(), feeReceipt.getIssue_date()))
+                                .setDias(algoritmos.hallar_n(feeReceipt.getPayment_date(), rate.getDiscount_date()))
                                 .setDiscount(feeReceipt.getDiscount())
                                 .setCurrency_type(feeReceipt.getCurrency_type())
                                 .setDelivered_value(feeReceipt.getDelivered_value())

@@ -26,16 +26,17 @@ public class FeeReceiptServiceImpl implements FeeReceiptService {
     @Override
     public FeeReceipt createFeeReceipt(FeeReceipt feeReceipt, Long rateId, Long walletId) {
 
-        return  walletRepository.findById(walletId).map(wallet -> {
-            feeReceipt.setWallet(wallet);
-         rateRepository.findById(rateId).map(rate -> {
+        return   rateRepository.findById(rateId).map(rate -> {
             feeReceipt.setRate(rate);
+            walletRepository.findById(walletId).map(wallet -> {
+            feeReceipt.setWallet(wallet);
+
 
 
                 return feeRepository.save(
                         feeReceipt.setPayment_date(feeReceipt.getPayment_date())
                                 .setIssue_date(feeReceipt.getIssue_date())
-                                .setDias(algoritmos.hallar_n(feeReceipt.getPayment_date(), rate.getDiscount_date()))
+
                                 .setDiscount(feeReceipt.getDiscount())
                                 .setCurrency_type(feeReceipt.getCurrency_type())
                                 .setDelivered_value(feeReceipt.getDelivered_value())
@@ -56,7 +57,7 @@ public class FeeReceiptServiceImpl implements FeeReceiptService {
                     return feeRepository.save(
                             feeReceipt.setPayment_date(feeReceipt.getPayment_date())
                                     .setIssue_date(feeReceipt.getIssue_date())
-                                    .setDias(algoritmos.hallar_n(feeReceipt.getPayment_date(), feeReceipt.getIssue_date()))
+                                    .setDias(algoritmos.getDayCount(feeReceipt.getPayment_date(),rate.getDiscount_date()))
                                     .setDiscount(feeReceipt.getDiscount())
                                     .setCurrency_type(feeReceipt.getCurrency_type())
                                     .setDelivered_value(feeReceipt.getDelivered_value())

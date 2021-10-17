@@ -1,11 +1,8 @@
 package com.finanzas.finanzasback.domain.model;
 
-import com.finanzas.finanzasback.security.entity.Usuario;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -21,16 +18,16 @@ public class FeeReceipt {
     private Date issue_date;
 
     private Date payment_date;
-    private Float     total_to_receive;
-    private Float retention;
-    private Float    total_final_costs;
-    private Float total_starting_costs;
-    private Float   discount_rate;
-    private Float discount;
-    private Float    net_worth;
-    private Float received_value;
-    private Float     delivered_value;
-    private Float tcea;
+    private double     total_to_receive;
+    private double retention;
+    private double    total_final_costs;
+    private double total_starting_costs;
+    private double   discount_rate;
+    private double discount;
+    private double    net_worth;
+    private double received_value;
+    private double     delivered_value;
+    private double tcea;
     private int dias;
 
 
@@ -77,83 +74,83 @@ public class FeeReceipt {
         this.payment_date = payment_date;return this;
     }
 
-    public Float getTotal_to_receive() {
+    public double getTotal_to_receive() {
         return total_to_receive;
     }
 
-    public FeeReceipt setTotal_to_receive(Float total_to_receive) {
+    public FeeReceipt setTotal_to_receive(double total_to_receive) {
         this.total_to_receive = total_to_receive;return this;
     }
 
-    public Float getRetention() {
+    public double getRetention() {
         return retention;
     }
 
-    public FeeReceipt setRetention(Float retention) {
+    public FeeReceipt setRetention(double retention) {
         this.retention = retention;return this;
     }
 
-    public Float getTotal_final_costs() {
+    public double getTotal_final_costs() {
         return total_final_costs;
     }
 
-    public FeeReceipt setTotal_final_costs(Float total_final_costs) {
+    public FeeReceipt setTotal_final_costs(double total_final_costs) {
         this.total_final_costs = total_final_costs;return this;
     }
 
-    public Float getTotal_starting_costs() {
+    public double getTotal_starting_costs() {
         return total_starting_costs;
     }
 
-    public FeeReceipt setTotal_starting_costs(Float total_starting_costs) {
+    public FeeReceipt setTotal_starting_costs(double total_starting_costs) {
         this.total_starting_costs = total_starting_costs;return this;
     }
 
-    public Float getDiscount_rate() {
+    public double getDiscount_rate() {
         return discount_rate;
     }
 
-    public FeeReceipt setDiscount_rate(Float discount_rate) {
+    public FeeReceipt setDiscount_rate(double discount_rate) {
         this.discount_rate = discount_rate;return this;
     }
 
-    public Float getDiscount() {
+    public double getDiscount() {
         return discount;
     }
 
-    public FeeReceipt setDiscount(Float discount) {
+    public FeeReceipt setDiscount(double discount) {
         this.discount = discount;return this;
     }
 
-    public Float getNet_worth() {
+    public double getNet_worth() {
         return net_worth;
     }
 
-    public FeeReceipt setNet_worth(Float net_worth) {
+    public FeeReceipt setNet_worth(double net_worth) {
         this.net_worth = net_worth;return this;
     }
 
-    public Float getReceived_value() {
+    public double getReceived_value() {
         return received_value;
     }
 
-    public FeeReceipt setReceived_value(Float received_value) {
+    public FeeReceipt setReceived_value(double received_value) {
         this.received_value = received_value;return this;
     }
 
-    public Float getDelivered_value() {
+    public double getDelivered_value() {
         return delivered_value;
     }
 
-    public FeeReceipt setDelivered_value(Float delivered_value) {
+    public FeeReceipt setDelivered_value(double delivered_value) {
         this.delivered_value = delivered_value;return this;
     }
 
-    public Float getTcea() {
+    public double getTcea() {
         return tcea;
     }
 
-    public FeeReceipt setTcea(Float tcea) {
+    public FeeReceipt setTcea(double tcea) {
         this.tcea = tcea;
         return this;
     }

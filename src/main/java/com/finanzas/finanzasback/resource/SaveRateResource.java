@@ -6,18 +6,18 @@ import java.util.Date;
 
 public class SaveRateResource {
 
-    private int rate_type;
+    private boolean rate_type;
     private int rate_term;
-    private int percentage;
+    private double percentage;
     private int capitalization;
     @DateTimeFormat
     private Date discount_date;
 
-    public int getRate_type() {
+    public boolean getRate_type() {
         return rate_type;
     }
 
-    public void setRate_type(int rate_type) {
+    public void setRate_type(boolean rate_type) {
         this.rate_type = rate_type;
     }
 
@@ -29,11 +29,11 @@ public class SaveRateResource {
         this.rate_term = rate_term;
     }
 
-    public int getPercentage() {
+    public double getPercentage() {
         return percentage;
     }
 
-    public void setPercentage(int percentage) {
+    public void setPercentage(double percentage) {
         this.percentage = percentage;
     }
 

@@ -17,11 +17,11 @@ public class Wallet  {
     private String name;
     private String description;
     private Boolean currency_type;
-    private float total_value;
-    private float tir;
+    private double total_value;
+    private double tir;
 
     public Wallet(){}
-    public Wallet(Long id, String name, String description, Boolean currency_type, float total_value, float tir) {
+    public Wallet(Long id, String name, String description, Boolean currency_type, double total_value, double tir) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -67,19 +67,19 @@ public class Wallet  {
         this.currency_type = currency_type;
     }
 
-    public float getTotal_value() {
+    public double getTotal_value() {
         return total_value;
     }
 
-    public void setTotal_value(float total_value) {
+    public void setTotal_value(double total_value) {
         this.total_value = total_value;
     }
 
-    public float getTir() {
+    public double getTir() {
         return tir;
     }
 
-    public void setTir(float tir) {
+    public void setTir(double tir) {
         this.tir = tir;
     }
 

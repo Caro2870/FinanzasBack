@@ -14,10 +14,10 @@ public class Cost {
     private Long id;
     private Boolean cost_type;
     private Boolean value_type;
-    private Float    value;
+    private double   value;
 
     public Cost(){}
-    public Cost(Long id, Boolean cost_type, Boolean value_type, Float value) {
+    public Cost(Long id, Boolean cost_type, Boolean value_type, double value) {
         this.id = id;
         this.cost_type = cost_type;
         this.value_type = value_type;
@@ -62,11 +62,11 @@ public class Cost {
         this.value_type = value_type;
     }
 
-    public Float getValue() {
+    public double getValue() {
         return value;
     }
 
-    public void setValue(Float value) {
+    public void setValue(double value) {
         this.value = value;
     }
 }

@@ -37,14 +37,13 @@ public class FeeReceiptServiceImpl implements FeeReceiptService {
                         feeReceipt.setPayment_date(feeReceipt.getPayment_date())
                                 .setIssue_date(feeReceipt.getIssue_date())
 
-                                .setDiscount(feeReceipt.getDiscount())
+
                                 .setCurrency_type(feeReceipt.getCurrency_type())
                                 .setDelivered_value(feeReceipt.getDelivered_value())
-                                .setDiscount_rate(feeReceipt.getDiscount_rate())
-                                .setDiscount(feeReceipt.getDiscount())
+
                                 .setNet_worth(feeReceipt.getNet_worth())
                                 .setTotal_to_receive(feeReceipt.getTotal_to_receive())
-                                .setTotal_starting_costs(feeReceipt.getTotal_starting_costs())
+
                                 .setTotal_final_costs(feeReceipt.getTotal_final_costs())
                                 .setTcea(feeReceipt.getTcea())
                                 .setRetention(feeReceipt.getRetention())
@@ -57,18 +56,17 @@ public class FeeReceiptServiceImpl implements FeeReceiptService {
                     return feeRepository.save(
                             feeReceipt.setPayment_date(feeReceipt.getPayment_date())
                                     .setIssue_date(feeReceipt.getIssue_date())
-                                    .setDias(algoritmos.getDayCount(feeReceipt.getPayment_date(),rate.getDiscount_date()))
-                                    .setDiscount(feeReceipt.getDiscount())
+                                    .setDias(algoritmos.getDayCount(rate.getDiscount_date(),feeReceipt.getPayment_date()))
+                                    .setDiscount(algoritmos.descuento(feeReceipt.getDias(),rate.getRate_term(),feeReceipt.getTotal_to_receive(),rate.getPercentage(),rate.getCapitalization(),rate.getRate_type()))
                                     .setCurrency_type(feeReceipt.getCurrency_type())
                                     .setDelivered_value(feeReceipt.getDelivered_value())
-                                    .setDiscount_rate(feeReceipt.getDiscount_rate())
-                                    .setDiscount(feeReceipt.getDiscount())
+                                    .setDiscount_rate(algoritmos.tasa_descontada(feeReceipt.getDias(),rate.getRate_term(),rate.getPercentage(),rate.getCapitalization(),rate.getRate_type()))
                                     .setNet_worth(feeReceipt.getNet_worth())
                                     .setTotal_to_receive(feeReceipt.getTotal_to_receive())
-                                    .setTotal_starting_costs(feeReceipt.getTotal_starting_costs())
+                                    .setTotal_starting_costs(algoritmos.tasa_a_periodo_de_dias(feeReceipt.getDias(),rate.getPercentage(),rate.getRate_term(),rate.getCapitalization(),rate.getRate_type()))
                                     .setTotal_final_costs(feeReceipt.getTotal_final_costs())
                                     .setTcea(feeReceipt.getTcea())
-                                    .setRetention(feeReceipt.getRetention())
+                                    .setRetention(0.08)
                                     .setReceived_value(feeReceipt.getReceived_value()));
         }).orElseThrow(() -> new ResourceNotFoundException("Wallet", "Id", walletId));
 

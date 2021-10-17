@@ -13,9 +13,9 @@ public class Rate {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
-   private int rate_type;
+   private boolean rate_type;
     private int rate_term;
-    private int percentage;
+    private double percentage;
     private int capitalization;
     @DateTimeFormat
     private Date discount_date;
@@ -30,11 +30,11 @@ public class Rate {
         return this;
     }
 
-    public int getRate_type() {
+    public boolean getRate_type() {
         return rate_type;
     }
 
-    public Rate setRate_type(int rate_type) {
+    public Rate setRate_type(boolean rate_type) {
         this.rate_type = rate_type;
         return this;
     }
@@ -48,11 +48,11 @@ public class Rate {
         return this;
     }
 
-    public int getPercentage() {
+    public double getPercentage() {
         return percentage;
     }
 
-    public Rate setPercentage(int percentage) {
+    public Rate setPercentage(double percentage) {
         this.percentage = percentage;
         return this;
     }

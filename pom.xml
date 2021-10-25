@@ -13,8 +13,8 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>FinanzasBack</name>
     <description>FinanzasBack</description>
-    <properties>
-        <java.version>11</java.version>
+     <properties>
+        <java.version>1.8</java.version>
     </properties>
 
     <dependencies>

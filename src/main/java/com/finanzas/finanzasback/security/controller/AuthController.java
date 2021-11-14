@@ -1,6 +1,8 @@
 package com.finanzas.finanzasback.security.controller;
 
 import com.finanzas.finanzasback.dto.Mensaje;
+import com.finanzas.finanzasback.resource.SaveUserResource;
+import com.finanzas.finanzasback.resource.UserResource;
 import com.finanzas.finanzasback.security.dto.JwtDto;
 import com.finanzas.finanzasback.security.dto.LoginUsuario;
 import com.finanzas.finanzasback.security.dto.NuevoUsuario;
@@ -10,7 +12,11 @@ import com.finanzas.finanzasback.security.enums.RolNombre;
 import com.finanzas.finanzasback.security.jwt.JwtProvider;
 import com.finanzas.finanzasback.security.service.RolService;
 import com.finanzas.finanzasback.security.service.UsuarioService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,7 +30,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.text.ParseException;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/auth")
@@ -45,6 +54,9 @@ public class AuthController {
 
     @Autowired
     JwtProvider jwtProvider;
+
+    @Autowired
+    private ModelMapper mapper;
 
     @PostMapping("/nuevo")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult){
@@ -70,6 +82,28 @@ public class AuthController {
         return new ResponseEntity(new Mensaje("usuario guardado"), HttpStatus.CREATED);
     }
 
+
+    @GetMapping("/{userId}/users/")
+    public UserResource getUserById(@PathVariable int userId) {
+        return convertToResource(usuarioService.getUserById(userId));
+    }
+
+    @GetMapping("users/nombre/{nombre}/")
+    public UserResource getUserByNombre(@RequestParam(value="nombre") String nombre) {
+        return convertToResource(usuarioService.getByNombreUsuario(nombre));
+    }
+
+    @GetMapping("/users")
+    public Page<UserResource> getAllUsers(Pageable pageable){
+        Page<Usuario> userPage = usuarioService.getAllUsers(pageable);
+        List<UserResource> resources = userPage.getContent()
+                .stream()
+                .map(this::convertToResource)
+                .collect(Collectors.toList());
+
+        return new PageImpl<>(resources, pageable, resources.size());
+    }
+
     @PostMapping("/login")
     public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult){
         if(bindingResult.hasErrors())
@@ -88,4 +122,13 @@ public class AuthController {
         JwtDto jwt = new JwtDto(token);
         return new ResponseEntity(jwt, HttpStatus.OK);
     }
+
+
+
+    private UserResource convertToResource(Usuario entity)
+    {
+        return mapper.map(entity, UserResource.class);
+    }
+
+
 }

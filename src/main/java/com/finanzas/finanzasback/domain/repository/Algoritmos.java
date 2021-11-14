@@ -5,8 +5,7 @@ import org.springframework.stereotype.Repository;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
-
+import static java.lang.Double.NaN;
 
 
 @Repository
@@ -30,7 +29,7 @@ public class Algoritmos {
     }
 
 
-    public double tasa_a_periodo_de_dias(int N,double porcentaje,int plazo_de_tasa,int capitalizacion,boolean tipo_de_tasa){
+    public static double tasa_a_periodo_de_dias(int N,double porcentaje,int plazo_de_tasa,int capitalizacion,boolean tipo_de_tasa){
         double tep=0;
         if(tipo_de_tasa) {
             double arriba;
@@ -50,26 +49,47 @@ public class Algoritmos {
             System.out.println(tep);
         }
 
-        return tep;
+        if (Double.isNaN(tep))
+        {
+            tep=0;
+            return tep;
+        }
+        else{
+            return tep;
+        }
+
 
     }
 
 
 
-    public double tasa_descontada(int N,int plazo_de_tasa,double porcentaje,int capitalizacion,boolean tipo_de_tasa){
+    public static double tasa_descontada(int N,int plazo_de_tasa,double porcentaje,int capitalizacion,boolean tipo_de_tasa){
 
         double tep;
         tep= tasa_a_periodo_de_dias(N,porcentaje,plazo_de_tasa,capitalizacion,tipo_de_tasa);
 
-
-        tep=(tep)/(1+(tep));
-        return tep*100;
+        if (Double.isNaN(tep))
+        {
+            tep=0;
+            return tep;
+        }
+       else {
+            tep = (tep) / (1 + (tep));
+            return tep * 100;
+        }
     }
 
 
-    public double descuento(int N,int plazo_de_tasa,double valor_nominal,double porcentaje,int capitalizacion,boolean tipo_de_tasa){
+    public static double descuento(int N,int plazo_de_tasa,double valor_nominal,double porcentaje,int capitalizacion,boolean tipo_de_tasa){
         double descuento=0;
         descuento= tasa_descontada(N,plazo_de_tasa,porcentaje,capitalizacion,tipo_de_tasa)*valor_nominal;
-        return descuento/100;
+        if (Double.isNaN(descuento))
+        {
+            descuento=0;
+            return descuento;
+        }
+        else {
+        return descuento/100;}
+
     }
 }

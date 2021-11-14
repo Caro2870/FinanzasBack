@@ -2,6 +2,7 @@ package com.finanzas.finanzasback.controller;
 
 import com.finanzas.finanzasback.domain.model.Wallet;
 import com.finanzas.finanzasback.domain.service.WalletService;
+import com.finanzas.finanzasback.resource.FeeReceiptResource;
 import com.finanzas.finanzasback.resource.SaveWalletResource;
 import com.finanzas.finanzasback.resource.WalletResource;
 import org.modelmapper.ModelMapper;
@@ -27,6 +28,10 @@ public class WalletController {
         return convertToResource(walletService.createWallet(wallet,userId));
     }
 
+    @GetMapping("/{walletId}/wallets/")
+    public WalletResource getWalletById(@PathVariable Long walletId) {
+        return convertToResource(walletService.getWalletById(walletId));
+    }
     private Wallet convertToEntity(SaveWalletResource resource) {
         return mapper.map(resource, Wallet.class);
     }

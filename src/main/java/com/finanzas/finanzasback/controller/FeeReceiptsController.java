@@ -4,6 +4,7 @@ import com.finanzas.finanzasback.domain.model.FeeReceipt;
 import com.finanzas.finanzasback.domain.service.FeeReceiptService;
 import com.finanzas.finanzasback.resource.FeeReceiptResource;
 import com.finanzas.finanzasback.resource.SaveFeeReceiptResource;
+import com.finanzas.finanzasback.resource.UserResource;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -29,6 +30,10 @@ public class FeeReceiptsController {
         return convertToResource(feeReceiptService.createFeeReceipt(feeReceipt,rateId,walletId));
     }
 
+    @GetMapping("/{feeRecepeitId}/feeRecepeit/")
+    public FeeReceiptResource getFeeRecepeitById(@PathVariable Long feeRecepeitId) {
+        return convertToResource(feeReceiptService.getFeeReceiptById(feeRecepeitId));
+    }
     private FeeReceipt convertToEntity(SaveFeeReceiptResource resource) {
         return mapper.map(resource, FeeReceipt.class);
     }

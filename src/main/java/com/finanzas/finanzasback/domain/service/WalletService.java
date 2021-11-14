@@ -5,4 +5,5 @@ import com.finanzas.finanzasback.domain.model.Wallet;
 
 public interface WalletService {
     Wallet createWallet(Wallet wallet,int userId);
+    Wallet getWalletById(Long walletId);
 }

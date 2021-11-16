@@ -7,6 +7,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "fee_receipts")
+
 public class FeeReceipt {
 
     @Id
@@ -18,7 +19,7 @@ public class FeeReceipt {
     private Date issue_date;
 
     private Date payment_date;
-    private double     total_to_receive;
+    private double     valor_neto;
     private double retention;
     private double    total_final_costs;
     private double total_starting_costs;
@@ -29,6 +30,10 @@ public class FeeReceipt {
     private double     delivered_value;
     private double tcea;
     private int dias;
+    private double tea;
+    private double tasa_efectiva_a_dias;
+
+
 
 
 
@@ -74,13 +79,6 @@ public class FeeReceipt {
         this.payment_date = payment_date;return this;
     }
 
-    public double getTotal_to_receive() {
-        return total_to_receive;
-    }
-
-    public FeeReceipt setTotal_to_receive(double total_to_receive) {
-        this.total_to_receive = total_to_receive;return this;
-    }
 
     public double getRetention() {
         return retention;
@@ -180,6 +178,33 @@ public class FeeReceipt {
 
     public FeeReceipt setWallet(Wallet wallet) {
         this.wallet = wallet;
+        return this;
+    }
+
+    public double getTea() {
+        return tea;
+    }
+
+    public FeeReceipt setTea(double tea) {
+        this.tea = tea;
+        return this;
+    }
+
+    public double getTasa_efectiva_a_dias() {
+        return tasa_efectiva_a_dias;
+    }
+
+    public FeeReceipt setTasa_efectiva_a_dias(double tasa_efectiva_a_dias) {
+        this.tasa_efectiva_a_dias = tasa_efectiva_a_dias;
+        return this;
+    }
+
+    public double getValor_neto() {
+        return valor_neto;
+    }
+
+    public FeeReceipt setValor_neto(double valor_neto) {
+        this.valor_neto = valor_neto;
         return this;
     }
 }

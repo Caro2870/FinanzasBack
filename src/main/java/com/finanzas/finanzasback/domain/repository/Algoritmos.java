@@ -85,11 +85,15 @@ public class Algoritmos {
         descuento= tasa_descontada(N,plazo_de_tasa,porcentaje,capitalizacion,tipo_de_tasa)*valor_nominal;
         if (Double.isNaN(descuento))
         {
+            System.out.println(descuento);
             descuento=0;
             return descuento;
         }
         else {
+            System.out.println(descuento);
         return descuento/100;}
 
     }
+
+
 }

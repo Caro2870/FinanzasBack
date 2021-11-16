@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "costs")
+
 public class Cost {
 
     @Id

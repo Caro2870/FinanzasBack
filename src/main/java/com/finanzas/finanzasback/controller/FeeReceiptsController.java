@@ -34,6 +34,17 @@ public class FeeReceiptsController {
     public FeeReceiptResource getFeeRecepeitById(@PathVariable Long feeRecepeitId) {
         return convertToResource(feeReceiptService.getFeeReceiptById(feeRecepeitId));
     }
+
+
+    @PutMapping("/rates/{rateId}/wallets/{walletId}/feeReceipts/{feeReceiptId}")
+    public FeeReceiptResource updateFeeReceipt(
+            @PathVariable Long rateId,
+            @PathVariable Long walletId,
+            @PathVariable Long feeReceiptId,
+            @Valid @RequestBody SaveFeeReceiptResource resource) {
+        return convertToResource(feeReceiptService.updateFeeReceipt(feeReceiptId,rateId,walletId,convertToEntity(resource)));
+    }
+
     private FeeReceipt convertToEntity(SaveFeeReceiptResource resource) {
         return mapper.map(resource, FeeReceipt.class);
     }

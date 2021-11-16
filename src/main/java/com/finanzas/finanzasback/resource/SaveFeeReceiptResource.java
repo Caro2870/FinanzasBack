@@ -10,7 +10,7 @@ public class SaveFeeReceiptResource {
     private Date issue_date;
 
     private Date payment_date;
-    private double     total_to_receive;
+    private double     valor_neto;
     private double retention;
     private double    total_final_costs;
     private double total_starting_costs;
@@ -21,7 +21,8 @@ public class SaveFeeReceiptResource {
     private double     delivered_value;
     private double tcea;
     private int dias;
-
+    private double tea;
+    private double tasa_efectiva_a_dias;
 
     public Boolean getCurrency_type() {
         return currency_type;
@@ -47,13 +48,7 @@ public class SaveFeeReceiptResource {
         this.payment_date = payment_date;
     }
 
-    public double getTotal_to_receive() {
-        return total_to_receive;
-    }
 
-    public void setTotal_to_receive(double total_to_receive) {
-        this.total_to_receive = total_to_receive;
-    }
 
     public double getRetention() {
         return retention;
@@ -133,5 +128,29 @@ public class SaveFeeReceiptResource {
 
     public void setDias(int dias) {
         this.dias = dias;
+    }
+
+    public double getTea() {
+        return tea;
+    }
+
+    public void setTea(double tea) {
+        this.tea = tea;
+    }
+
+    public double getTasa_efectiva_a_dias() {
+        return tasa_efectiva_a_dias;
+    }
+
+    public void setTasa_efectiva_a_dias(double tasa_efectiva_a_dias) {
+        this.tasa_efectiva_a_dias = tasa_efectiva_a_dias;
+    }
+
+    public double getValor_neto() {
+        return valor_neto;
+    }
+
+    public void setValor_neto(double valor_neto) {
+        this.valor_neto = valor_neto;
     }
 }

@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface feeRepository extends JpaRepository<FeeReceipt, Long> {
+public interface FeeRepository extends JpaRepository<FeeReceipt, Long> {
 }

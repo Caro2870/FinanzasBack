@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class FeeReceiptServiceImpl implements FeeReceiptService {
 
     @Autowired
-    private feeRepository feeRepository;
+    private FeeRepository feeRepository;
     @Autowired
     private Algoritmos algoritmos;
 
@@ -21,7 +21,7 @@ public class FeeReceiptServiceImpl implements FeeReceiptService {
     private WalletRepository walletRepository;
 
     @Autowired
-    private rateRepository rateRepository;
+    private RateRepository rateRepository;
 
     @Override
     public FeeReceipt createFeeReceipt(FeeReceipt feeReceipt, Long rateId, Long walletId) {
@@ -78,4 +78,7 @@ public class FeeReceiptServiceImpl implements FeeReceiptService {
     public FeeReceipt getFeeReceiptById(Long feeReceiptId) {
         return  feeRepository.findById(feeReceiptId).orElseThrow(() -> new ResourceNotFoundException("FeeRecepeit", "Id", feeReceiptId));
     }
+
+
+
 }

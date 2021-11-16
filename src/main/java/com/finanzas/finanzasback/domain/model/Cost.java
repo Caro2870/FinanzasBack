@@ -69,4 +69,20 @@ public class Cost {
     public void setValue(double value) {
         this.value = value;
     }
+
+    public Reason getReason() {
+        return reason;
+    }
+
+    public void setReason(Reason reason) {
+        this.reason = reason;
+    }
+
+    public FeeReceipt getFeeReceipt() {
+        return feeReceipt;
+    }
+
+    public void setFeeReceipt(FeeReceipt feeReceipt) {
+        this.feeReceipt = feeReceipt;
+    }
 }

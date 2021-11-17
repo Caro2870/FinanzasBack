@@ -29,4 +29,6 @@ public interface CostRepository extends JpaRepository<Cost, Long> {
     @Query(nativeQuery = true, value = "select value from costs where fee_receipt_id = :fee_receipt_id AND cost_type = false  AND value_type = false ")
     List<Number> valorFinal_porcentaje(@Param("fee_receipt_id")Integer fee_receipt_id);
 
+
+
 }

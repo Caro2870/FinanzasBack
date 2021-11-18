@@ -31,7 +31,6 @@ public class Algoritmos {
 
     public static double tasa_a_periodo_de_dias(int N,double porcentaje,int plazo_de_tasa,int capitalizacion,boolean tipo_de_tasa){
         double tep=0;
-
         if(tipo_de_tasa) {
             double arriba;
             double abajo;
@@ -39,7 +38,7 @@ public class Algoritmos {
             System.out.println(arriba);
             System.out.println(plazo_de_tasa);
 
-            abajo=((double)N/(double)plazo_de_tasa);
+            abajo=((double)N/plazo_de_tasa);
             System.out.println(N);
             System.out.println(abajo);
             tep=Math.pow(arriba,abajo)-1;

@@ -14,6 +14,6 @@ public interface FeeReceiptService {
   FeeReceipt updateFeeReceipt(Long feeReceiptId, Long rateId, Long walletId, FeeReceipt feeReceipt);
   double total_inicial(Long feeRecepeit,double valor_networth);
   double total_final(Long feeRecepeit,double valor_networth);
-  Page<FeeReceipt>  getAllFeeReceiptsByWalletId(int walletId, Pageable pageable);
+  Page<FeeReceipt>  getAllFeeReceiptsByWalletId(Long walletId, Pageable pageable);
 
 }

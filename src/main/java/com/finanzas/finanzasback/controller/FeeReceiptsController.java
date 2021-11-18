@@ -52,7 +52,7 @@ public class FeeReceiptsController {
     }
 
     @GetMapping("/wallets/{walletId}/feeReceipts")
-    public Page<FeeReceiptResource> getAllFeeReceiptsByWalletId(@PathVariable int walletId, Pageable pageable) {
+    public Page<FeeReceiptResource> getAllFeeReceiptsByWalletId(@PathVariable Long walletId, Pageable pageable) {
         Page<FeeReceipt> feeReceiptPage = feeReceiptService.getAllFeeReceiptsByWalletId(walletId, pageable);
         List<FeeReceiptResource> resources = feeReceiptPage.getContent()
                 .stream()
@@ -60,7 +60,7 @@ public class FeeReceiptsController {
                 .collect(Collectors.toList());
         return new PageImpl<>(resources, pageable, resources.size());
     }
-    
+
     private FeeReceipt convertToEntity(SaveFeeReceiptResource resource) {
         return mapper.map(resource, FeeReceipt.class);
     }

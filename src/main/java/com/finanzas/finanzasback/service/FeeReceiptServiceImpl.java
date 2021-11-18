@@ -92,7 +92,7 @@ public class FeeReceiptServiceImpl implements FeeReceiptService {
         return  feeRepository.findById(feeReceiptId).orElseThrow(() -> new ResourceNotFoundException("FeeRecepeit", "Id", feeReceiptId));
     }
 
-    public Page<FeeReceipt> getAllFeeReceiptsByWalletId(int walletId, Pageable pageable) {
+    public Page<FeeReceipt> getAllFeeReceiptsByWalletId(Long walletId, Pageable pageable) {
         return feeRepository.findByWalletId(walletId,pageable);
     }
 

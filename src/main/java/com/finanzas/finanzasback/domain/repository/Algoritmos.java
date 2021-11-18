@@ -39,7 +39,7 @@ public class Algoritmos {
             System.out.println(arriba);
             System.out.println(plazo_de_tasa);
 
-            abajo=((double)N/plazo_de_tasa);
+            abajo=((double)N/(double)plazo_de_tasa);
             System.out.println(N);
             System.out.println(abajo);
             tep=Math.pow(arriba,abajo)-1;

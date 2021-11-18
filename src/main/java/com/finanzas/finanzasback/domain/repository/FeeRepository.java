@@ -12,5 +12,5 @@ import java.util.List;
 
 @Repository
 public interface FeeRepository extends JpaRepository<FeeReceipt, Long> {
-    Page<FeeReceipt> findByWalletId(int walletId, Pageable pageable);
+    Page<FeeReceipt> findByWalletId(Long walletId, Pageable pageable);
 }

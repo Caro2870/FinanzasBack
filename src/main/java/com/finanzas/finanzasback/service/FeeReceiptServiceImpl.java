@@ -77,7 +77,7 @@ public class FeeReceiptServiceImpl implements FeeReceiptService {
                                     .setTotal_starting_costs(0)
                                     .setTotal_final_costs(feeReceipt.getTotal_final_costs())
                                     .setTcea(feeReceipt.getTcea())
-                                    .setTea(algoritmos.tasa_a_periodo_de_dias(rate.getRate_term(),rate.getPercentage(),rate.getRate_term(),rate.getCapitalization(),rate.getRate_type())*100)
+                                    .setTea(algoritmos.tasa_a_periodo_de_dias(feeReceipt.getDias(),rate.getPercentage(),rate.getRate_term(),360,rate.getRate_type())*100)
                                     .setRetention(0.0)
                                     .setReceived_value(feeReceipt.getReceived_value()));
         }).orElseThrow(() -> new ResourceNotFoundException("Wallet", "Id", walletId));
@@ -105,7 +105,8 @@ public class FeeReceiptServiceImpl implements FeeReceiptService {
                     .setDelivered_value((feeReceipt.getNet_worth())+total_final(feeReceiptId,feeReceipt.getNet_worth())-feeReceipt.getRetention())
                     .setTotal_starting_costs(total_inicial(feeReceiptId,feeReceipt.getNet_worth()))
                     .setTotal_final_costs(total_final(feeReceiptId,feeReceipt.getNet_worth()))
-                    .setTcea((Math.pow((((feeReceipt.getNet_worth())+total_final(feeReceiptId,feeReceipt.getNet_worth())-feeReceipt.getRetention())/((feeReceipt.getNet_worth()-feeReceipt.getDiscount())-(total_inicial(feeReceiptId,feeReceipt.getNet_worth()))-feeReceipt.getRetention())),(rate.getRate_term()/feeReceipt.getDias()))-1)*100)
+                    .setTea(algoritmos.tasa_a_periodo_de_dias(360,feeReceipt.getTasa_efectiva_a_dias(),rate.getRate_term(),rate.getCapitalization(),true)*100)
+                    .setTcea((Math.pow((((feeReceipt.getNet_worth())+total_final(feeReceiptId,feeReceipt.getNet_worth())-feeReceipt.getRetention())/((feeReceipt.getNet_worth()-feeReceipt.getDiscount())-(total_inicial(feeReceiptId,feeReceipt.getNet_worth()))-feeReceipt.getRetention())),(360/feeReceipt.getDias()))-1)*100)
                     .setValor_neto((feeReceipt.getNet_worth()-feeReceipt.getDiscount()));
             ;
 

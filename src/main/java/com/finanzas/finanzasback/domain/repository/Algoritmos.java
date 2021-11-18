@@ -31,6 +31,7 @@ public class Algoritmos {
 
     public static double tasa_a_periodo_de_dias(int N,double porcentaje,int plazo_de_tasa,int capitalizacion,boolean tipo_de_tasa){
         double tep=0;
+
         if(tipo_de_tasa) {
             double arriba;
             double abajo;
@@ -45,18 +46,12 @@ public class Algoritmos {
 
         }
         else {
-           tep=Math.pow((1+(porcentaje/100)/(plazo_de_tasa/(double)capitalizacion)),N/capitalizacion)-1;
-            System.out.println(tep);
+
+           tep=Math.pow( 1+ ((porcentaje/100)/((double)plazo_de_tasa/(double)capitalizacion))  ,((double)N/(double)capitalizacion))-1;
+
         }
 
-        if (Double.isNaN(tep))
-        {
-            tep=0;
-            return tep;
-        }
-        else{
-            return tep;
-        }
+        return tep;
 
 
     }

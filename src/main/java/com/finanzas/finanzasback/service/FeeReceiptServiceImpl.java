@@ -78,7 +78,7 @@ public class FeeReceiptServiceImpl implements FeeReceiptService {
                                     .setTotal_final_costs(feeReceipt.getTotal_final_costs())
                                     .setTcea(feeReceipt.getTcea())
                                     .setTea(algoritmos.tasa_a_periodo_de_dias(feeReceipt.getDias(),rate.getPercentage(),rate.getRate_term(),360,rate.getRate_type())*100)
-                                    .setRetention(0.0)
+                                    .setRetention(0.08*feeReceipt.getNet_worth())
                                     .setReceived_value(feeReceipt.getReceived_value()));
         }).orElseThrow(() -> new ResourceNotFoundException("Wallet", "Id", walletId));
 

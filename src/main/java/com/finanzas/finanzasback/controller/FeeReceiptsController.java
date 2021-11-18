@@ -7,10 +7,15 @@ import com.finanzas.finanzasback.resource.SaveFeeReceiptResource;
 import com.finanzas.finanzasback.resource.UserResource;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
@@ -46,6 +51,16 @@ public class FeeReceiptsController {
         return convertToResource(feeReceiptService.updateFeeReceipt(feeReceiptId,rateId,walletId,convertToEntity(resource)));
     }
 
+    @GetMapping("/wallets/{walletId}/feeReceipts")
+    public Page<FeeReceiptResource> getAllFeeReceiptsByWalletId(@PathVariable int walletId, Pageable pageable) {
+        Page<FeeReceipt> feeReceiptPage = feeReceiptService.getAllFeeReceiptsByWalletId(walletId, pageable);
+        List<FeeReceiptResource> resources = feeReceiptPage.getContent()
+                .stream()
+                .map(this::convertToResource)
+                .collect(Collectors.toList());
+        return new PageImpl<>(resources, pageable, resources.size());
+    }
+    
     private FeeReceipt convertToEntity(SaveFeeReceiptResource resource) {
         return mapper.map(resource, FeeReceipt.class);
     }

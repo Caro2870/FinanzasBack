@@ -8,6 +8,8 @@ import com.finanzas.finanzasback.domain.repository.*;
 import com.finanzas.finanzasback.domain.service.FeeReceiptService;
 import com.finanzas.finanzasback.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -88,6 +90,10 @@ public class FeeReceiptServiceImpl implements FeeReceiptService {
     @Override
     public FeeReceipt getFeeReceiptById(Long feeReceiptId) {
         return  feeRepository.findById(feeReceiptId).orElseThrow(() -> new ResourceNotFoundException("FeeRecepeit", "Id", feeReceiptId));
+    }
+
+    public Page<FeeReceipt> getAllFeeReceiptsByWalletId(int walletId, Pageable pageable) {
+        return feeRepository.findByWalletId(walletId,pageable);
     }
 
     @Override

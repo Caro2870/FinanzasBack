@@ -46,6 +46,7 @@ public class WalletServiceImpl implements WalletService {
         return walletRepository.findByUsuarioId(userId,pageable);
     }
 
+
     @Override
     public Wallet updateWallet(Long walletId, int userId, Wallet walletDetails) {
         if(!usuarioRepository.existsById(userId))

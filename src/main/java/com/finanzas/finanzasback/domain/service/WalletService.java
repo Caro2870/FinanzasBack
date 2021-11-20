@@ -17,4 +17,6 @@ public interface WalletService {
     double calc_tcea(Long walletId);
     double val_recibido_total(Long walletId);
     Page<Wallet> getAllWalletsByUserId(int userId, Pageable pageable);
+    public Wallet getWalletByUsuarioIdAndWalletId(int  usuarioId, Long walletId);
+
 }

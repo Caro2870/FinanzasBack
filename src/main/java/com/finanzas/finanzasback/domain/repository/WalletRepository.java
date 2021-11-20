@@ -26,5 +26,7 @@ public interface WalletRepository extends JpaRepository<Wallet, Long> {
     List<Number> delivered_value_por_walletId(@Param("wallet_id")Integer wallet_id);
 
     Page<Wallet> findByUsuarioId(int userId, Pageable pageable);
+
+    Wallet findByUsuarioIdAndId(int usuarioId, Long walletId);
 }
 

@@ -47,6 +47,12 @@ public class WalletController {
         return convertToResource(walletService.updateWallet( walletId,userId, convertToEntity(resource)));
     }
 
+    @GetMapping("/usuarios/{usuarioId}/wallets/{walletId}/wallets")
+    public WalletResource getWalletByUsuarioIdAndWalletId(@PathVariable int usuarioId,@PathVariable Long walletId ){
+        return convertToResource(walletService.getWalletByUsuarioIdAndWalletId(usuarioId,walletId));
+    }
+
+
     @GetMapping("/users/{userId}/wallets")
     public Page<WalletResource> getAllWalletsByUserId(@PathVariable int userId, Pageable pageable) {
         Page<Wallet> walletPage = walletService.getAllWalletsByUserId(userId, pageable);

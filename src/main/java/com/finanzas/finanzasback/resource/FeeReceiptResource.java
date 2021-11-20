@@ -1,5 +1,8 @@
 package com.finanzas.finanzasback.resource;
 
+import com.finanzas.finanzasback.domain.model.Rate;
+import com.finanzas.finanzasback.domain.model.Wallet;
+
 import java.util.Date;
 
 public class FeeReceiptResource {
@@ -24,6 +27,7 @@ public class FeeReceiptResource {
     private int dias;
     private double tea;
     private double tasa_efectiva_a_dias;
+    private Rate rate;
 
     public Long getId() {
         return id;
@@ -161,4 +165,15 @@ public class FeeReceiptResource {
     public void setValor_neto(double valor_neto) {
         this.valor_neto = valor_neto;
     }
+
+    public Rate getRate() {
+        return rate;
+    }
+
+    public void setRate(Rate rate) {
+        this.rate = rate;
+    }
+
+
+
 }

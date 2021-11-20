@@ -1,5 +1,7 @@
 package com.finanzas.finanzasback.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
@@ -37,9 +39,10 @@ public class FeeReceipt {
 
 
 
-    @OneToOne( fetch = FetchType.LAZY, optional = false)
+    @OneToOne( fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "rate_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private Rate rate;
 
     @ManyToOne( fetch = FetchType.LAZY, optional = false)

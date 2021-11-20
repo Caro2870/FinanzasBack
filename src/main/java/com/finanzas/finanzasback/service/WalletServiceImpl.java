@@ -32,6 +32,10 @@ public class WalletServiceImpl implements WalletService {
         }).orElseThrow(() -> new ResourceNotFoundException("Usuario", "Id", userId));
     }
 
+    @Override
+    public Wallet getWalletByUsuarioIdAndWalletId(int  usuarioId, Long walletId) {
+        return walletRepository.findByUsuarioIdAndId(usuarioId,walletId);
+    }
 
 
 

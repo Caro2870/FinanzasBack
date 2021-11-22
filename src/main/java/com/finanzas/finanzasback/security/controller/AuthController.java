@@ -66,10 +66,7 @@ public class AuthController {
             return new ResponseEntity(new Mensaje("ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         if(usuarioService.existsByEmail(nuevoUsuario.getEmail()))
             return new ResponseEntity(new Mensaje("ese email ya existe"), HttpStatus.BAD_REQUEST);
-        if(usuarioService.existsByDni(nuevoUsuario.getDni()))
-            return new ResponseEntity(new Mensaje("ese dni ya existe"), HttpStatus.BAD_REQUEST);
-        if(usuarioService.existsByRuc(nuevoUsuario.getRuc()))
-            return new ResponseEntity(new Mensaje("ese ruc ya existe"), HttpStatus.BAD_REQUEST);
+
         Usuario usuario =
                 new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getNombreUsuario(), nuevoUsuario.getEmail(),passwordEncoder.encode(nuevoUsuario.getPassword()),nuevoUsuario.getDni(), nuevoUsuario.getRuc(), nuevoUsuario.getAddress(), nuevoUsuario.getCellphone()
                         );
@@ -122,6 +119,7 @@ public class AuthController {
         JwtDto jwt = new JwtDto(token);
         return new ResponseEntity(jwt, HttpStatus.OK);
     }
+
 
 
 

@@ -9,6 +9,7 @@ import com.finanzas.finanzasback.security.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -50,6 +51,13 @@ public class WalletServiceImpl implements WalletService {
         return walletRepository.findByUsuarioId(userId,pageable);
     }
 
+    @Override
+    public ResponseEntity<?> deleteWallet(Long walletId) {
+        Wallet wallet=walletRepository.findById(walletId)
+                .orElseThrow(() -> new ResourceNotFoundException("Wallet", "Id", walletId));
+        walletRepository.delete(wallet);
+        return ResponseEntity.ok().build();
+    }
 
     @Override
     public Wallet updateWallet(Long walletId, int userId, Wallet walletDetails) {

@@ -32,7 +32,7 @@ public class Wallet  {
 
     @ManyToOne( fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+
     private Usuario usuario;
 
     public Long getId() {

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -63,6 +64,12 @@ public class FeeReceiptsController {
 
     private FeeReceipt convertToEntity(SaveFeeReceiptResource resource) {
         return mapper.map(resource, FeeReceipt.class);
+    }
+
+    @DeleteMapping("/feeReceipts/{feeReceiptId}")
+
+    public ResponseEntity<?> deleteFeeReceipt(@PathVariable Long feeReceiptId) {
+        return feeReceiptService.deleteFeeReceipt(feeReceiptId);
     }
 
     private FeeReceiptResource convertToResource(FeeReceipt entity) {

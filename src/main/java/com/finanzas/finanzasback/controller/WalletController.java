@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -33,6 +34,13 @@ public class WalletController {
 
         return convertToResource(walletService.createWallet(wallet,userId));
     }
+
+    @DeleteMapping("/wallets/{walletId}")
+
+    public ResponseEntity<?> deleteWallet(@PathVariable Long walletId) {
+        return walletService.deleteWallet(walletId);
+    }
+
 
     @GetMapping("/{walletId}/wallets/")
     public WalletResource getWalletById(@PathVariable Long walletId) {

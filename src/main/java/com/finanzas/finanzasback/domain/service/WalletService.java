@@ -5,6 +5,7 @@ import com.finanzas.finanzasback.domain.model.Rate;
 import com.finanzas.finanzasback.domain.model.Wallet;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -18,5 +19,6 @@ public interface WalletService {
     double val_recibido_total(Long walletId);
     Page<Wallet> getAllWalletsByUserId(int userId, Pageable pageable);
     public Wallet getWalletByUsuarioIdAndWalletId(int  usuarioId, Long walletId);
+    public ResponseEntity<?> deleteWallet(Long walletId);
 
 }

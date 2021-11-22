@@ -4,12 +4,14 @@ package com.finanzas.finanzasback.service;
 import com.finanzas.finanzasback.domain.model.Cost;
 import com.finanzas.finanzasback.domain.model.FeeReceipt;
 
+import com.finanzas.finanzasback.domain.model.Wallet;
 import com.finanzas.finanzasback.domain.repository.*;
 import com.finanzas.finanzasback.domain.service.FeeReceiptService;
 import com.finanzas.finanzasback.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -94,6 +96,15 @@ public class FeeReceiptServiceImpl implements FeeReceiptService {
 
     public Page<FeeReceipt> getAllFeeReceiptsByWalletId(Long walletId, Pageable pageable) {
         return feeRepository.findByWalletId(walletId,pageable);
+    }
+
+
+    @Override
+    public ResponseEntity<?> deleteFeeReceipt(Long feeReceiptId) {
+        FeeReceipt feeReceipt=feeRepository.findById(feeReceiptId)
+                .orElseThrow(() -> new ResourceNotFoundException("FeeReceipt", "Id", feeReceiptId));
+        feeRepository.delete(feeReceipt);
+        return ResponseEntity.ok().build();
     }
 
     @Override

@@ -19,13 +19,13 @@ public class Usuario {
     private String email;
     @NotNull
     private String password;
-    @NotNull
+
     private String dni;
-    @NotNull
+
     private String ruc;
-    @NotNull
+
     private String address;
-    @NotNull
+
     private String cellphone;
 
 
@@ -39,7 +39,7 @@ public class Usuario {
     }
 
     public Usuario(@NotNull String nombre, @NotNull String nombreUsuario, @NotNull String email, @NotNull String password,
-                   @NotNull String dni,@NotNull String ruc,@NotNull String address,@NotNull String cellphone
+                    String dni,String ruc,String address,String cellphone
 
     ) {
         this.nombre = nombre;

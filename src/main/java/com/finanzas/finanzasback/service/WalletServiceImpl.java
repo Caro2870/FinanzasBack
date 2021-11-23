@@ -84,8 +84,8 @@ public class WalletServiceImpl implements WalletService {
 
             for (int i = 0; i <= walletRepository.received_value_por_walletId(Math.toIntExact(walletId)).size()-1 ; i++) {
 
-                entregado = (double) walletRepository.delivered_value_por_walletId(Math.toIntExact(walletId)).get(i);
-                recibido =  (double) walletRepository.received_value_por_walletId(Math.toIntExact(walletId)).get(i);
+                entregado =Math.round((double) walletRepository.delivered_value_por_walletId(Math.toIntExact(walletId)).get(i)*100.0)/100.0 ;
+                recibido = Math.round((double) walletRepository.received_value_por_walletId(Math.toIntExact(walletId)).get(i)*100.0)/100.0   ;
                 dias = (int)  walletRepository.dias_por_walletId(Math.toIntExact(walletId)).get(i);
 
                 System.out.println("entregado"+entregado);

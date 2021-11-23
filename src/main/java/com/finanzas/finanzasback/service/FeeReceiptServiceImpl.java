@@ -123,8 +123,10 @@ public class FeeReceiptServiceImpl implements FeeReceiptService {
                     .setTotal_starting_costs(total_inicial(feeReceiptId,feeReceipt.getNet_worth()))
                     .setTotal_final_costs(total_final(feeReceiptId,feeReceipt.getNet_worth()))
                     .setTea(algoritmos.tasa_a_periodo_de_dias(360,feeReceipt.getTasa_efectiva_a_dias(),rate.getRate_term(),rate.getCapitalization(),true)*100)
-                    .setTcea((Math.pow((((feeReceipt.getNet_worth())+total_final(feeReceiptId,feeReceipt.getNet_worth())-feeReceipt.getRetention())/((feeReceipt.getNet_worth()-feeReceipt.getDiscount())-(total_inicial(feeReceiptId,feeReceipt.getNet_worth()))-feeReceipt.getRetention())),((double)360/(double)feeReceipt.getDias()))-1)*100)
+                    .setTcea((Math.pow( (   (Math.round(feeReceipt.getDelivered_value()*100.0)/100.0)  /  (Math.round(feeReceipt.getReceived_value()*100.0)/100.0) ),(double)360/(double)feeReceipt.getDias())-1)*100)
                     .setValor_neto((feeReceipt.getNet_worth()-feeReceipt.getDiscount()));
+
+
             ;
 
             return  feeRepository.save(feeReceipt);
